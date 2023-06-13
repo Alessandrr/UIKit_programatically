@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     private let stackView = UIStackView()
     private var segmentedControl = UISegmentedControl()
-    private let mainLabel = UILabel()
+    private let mainLabel = CustomLabel(title: "Done")
     private let slider = UISlider()
     private let textField = UITextField()
     private let doneButton = UIButton()
@@ -20,15 +20,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupSegmentedControl()
-        setupLabel()
-        setupSlider()
-        setupTextField()
-        setupDoneButton()
-        setupDatePicker()
-        setupStackView()
-        setupLayout()
-        addActions()
     }
     
     //MARK: Actions
@@ -58,23 +49,34 @@ class ViewController: UIViewController {
         mainLabel.text = sender.date.formatted(date: .long, time: .omitted)
     }
     
+    @objc
+    private func doneButtonActon() {
+        let secondVC = SecondViewController()
+        
+        present(secondVC, animated: true)
+    }
+    
 }
 
 //MARK: Settings of View
-private extension ViewController {
+private extension MainViewController {
     func setupView() {
         view.backgroundColor = .secondarySystemBackground
+        
+        setupSegmentedControl()
+        setupSlider()
+        setupTextField()
+        setupDoneButton()
+        setupDatePicker()
+        
+        setupStackView()
+        setupLayout()
+        addActions()
     }
 }
 
-//MARK: Settings
-private extension ViewController {
-    
-    func setupLabel() {
-        mainLabel.text = "Label"
-        mainLabel.font = UIFont.systemFont(ofSize: 17)
-        mainLabel.numberOfLines = 1
-    }
+//MARK: Settings of UI elements
+private extension MainViewController {
     
     func setupSlider() {
         slider.minimumValue = 0
@@ -92,8 +94,9 @@ private extension ViewController {
     
     func setupDoneButton() {
         doneButton.setTitle("Done", for: .normal)
-        doneButton.backgroundColor = UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1)
+        doneButton.backgroundColor = .mainBackground
         doneButton.layer.cornerRadius = 8
+        doneButton.setTitleColor(.highlightedColor, for: .highlighted)
     }
     
     func setupSegmentedControl() {
@@ -137,13 +140,19 @@ private extension ViewController {
             action: #selector(datePickerAction),
             for: .valueChanged
         )
+        
+        doneButton.addTarget(
+            self,
+            action: #selector(doneButtonActon),
+            for: .touchUpInside
+        )
     }
 }
 
 
-//MARK: Layout
+//MARK: Layout settings
 
-private extension ViewController {
+private extension MainViewController {
     func setupLayout() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
