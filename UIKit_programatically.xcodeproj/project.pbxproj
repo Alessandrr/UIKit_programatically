@@ -16,6 +16,7 @@
 		1FC438412A38E7D400B645F0 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC438402A38E7D400B645F0 /* UIColor + Extensions.swift */; };
 		1FC438432A38E8D800B645F0 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC438422A38E8D800B645F0 /* SecondViewController.swift */; };
 		1FC438452A38EB1000B645F0 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC438442A38EB1000B645F0 /* CustomTextField.swift */; };
+		1FC438472A3A334300B645F0 /* Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC438462A3A334300B645F0 /* Validate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		1FC438402A38E7D400B645F0 /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
 		1FC438422A38E8D800B645F0 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		1FC438442A38EB1000B645F0 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		1FC438462A3A334300B645F0 /* Validate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 		1FC4381E2A377EDA00B645F0 = {
 			isa = PBXGroup;
 			children = (
+				1FC438462A3A334300B645F0 /* Validate.swift */,
 				1FC438292A377EDA00B645F0 /* UIKit_programatically */,
 				1FC438282A377EDA00B645F0 /* Products */,
 			);
@@ -149,6 +152,7 @@
 				1FC438452A38EB1000B645F0 /* CustomTextField.swift in Sources */,
 				1FC438432A38E8D800B645F0 /* SecondViewController.swift in Sources */,
 				1FC4382F2A377EDA00B645F0 /* MainViewController.swift in Sources */,
+				1FC438472A3A334300B645F0 /* Validate.swift in Sources */,
 				1FC438412A38E7D400B645F0 /* UIColor + Extensions.swift in Sources */,
 				1FC4382B2A377EDA00B645F0 /* AppDelegate.swift in Sources */,
 				1FC4382D2A377EDA00B645F0 /* SceneDelegate.swift in Sources */,

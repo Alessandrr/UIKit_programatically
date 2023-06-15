@@ -14,6 +14,7 @@ final class CustomTextField: UITextField {
     init(placeholder: String, isPrivate: Bool = false) {
         super.init(frame: .zero)
         setupTextField(placeholder: placeholder, isPrivate: isPrivate)
+        clearsOnBeginEditing = true
     }
     
     @available(*, unavailable)

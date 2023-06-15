@@ -11,6 +11,7 @@ class SecondViewController: UIViewController {
     
     private let bgView = UIView()
     private let showPassButton = UIButton()
+    private let doneButton = UIButton()
     
     private let eMailTextField = CustomTextField(placeholder: " Enter your email")
     private let passwordTextField = CustomTextField(placeholder: " Enter password", isPrivate: true)
@@ -20,6 +21,12 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        eMailTextField.becomeFirstResponder()
+    }
+    
+    @objc
+    func togglePasswordVisibility() {
+        passwordTextField.isSecureTextEntry.toggle()
     }
 }
 
@@ -29,10 +36,14 @@ private extension SecondViewController {
         view.backgroundColor = .white
         
         setupShowPassButton()
+        setupDoneButton()
         setupStackView()
         setupLayout()
+        
         addActions()
+        appointDelegates()
     }
+
 }
 
 //MARK: -UI Elements settings
@@ -44,7 +55,7 @@ private extension SecondViewController {
         
         view.addSubview(mainStack)
         
-        [showPassButton, eMailTextField, passwordTextField].forEach { subView in
+        [showPassButton, eMailTextField, passwordTextField, doneButton].forEach { subView in
             mainStack.addArrangedSubview(subView)
         }
     }
@@ -57,11 +68,18 @@ private extension SecondViewController {
         showPassButton.setTitle("Show pass", for: .normal)
         showPassButton.setTitleColor(.systemPink, for: .normal)
         showPassButton.setTitleColor(.highlightedColor, for: .highlighted)
+        showPassButton.setTitleColor(.black, for: .disabled)
+        showPassButton.isEnabled = false
     }
     
-    @objc
-    func togglePasswordVisibility() {
-        passwordTextField.isSecureTextEntry.toggle()
+    func setupDoneButton() {
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.setTitleColor(.blue, for: .normal)
+    }
+    
+    func appointDelegates() {
+        eMailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     func addActions() {
@@ -88,5 +106,36 @@ private extension SecondViewController {
             mainStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             mainStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
+    }
+}
+
+
+// MARK: -UITextFieldDelegate
+extension SecondViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == eMailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            view.endEditing(true)
+        }
+        
+        return true
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let passwordInput = textField.text else { return }
+        
+        showPassButton.isEnabled = !passwordInput.isEmpty
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        switch textField {
+        case passwordTextField:
+            return Validate.isValidPassword(text: string)
+        default:
+            break
+        }
+        
+        return true
     }
 }
